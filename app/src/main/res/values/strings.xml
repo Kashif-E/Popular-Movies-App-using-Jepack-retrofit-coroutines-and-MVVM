@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Popular Movies App</string>
+    <string name="fetch_data">Fetch Data</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="rating">Rating:</string>
+    <string name="overview">OverView</string>
+    <string name="saved_movies">Saved Movies</string>
+    <string name="latest_movies">Latest Movies</string>
+    <string name="popular_movies">Popular Movies</string>
+    <string name="top_rated">Top Rated</string>
+    <string name="dark_mode_switch">Dark Mode Switch</string>
+</resources>

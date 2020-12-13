@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Gradle: androidx.datastore:datastore-preferences:1.0.0-alpha02@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0307483671b399cb8a9fe67278e03554/jetified-datastore-preferences-1.0.0-alpha02/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0307483671b399cb8a9fe67278e03554/jetified-datastore-preferences-1.0.0-alpha02/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0307483671b399cb8a9fe67278e03554/jetified-datastore-preferences-1.0.0-alpha02/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0307483671b399cb8a9fe67278e03554/jetified-datastore-preferences-1.0.0-alpha02/jars/libs/datastore-preferences-proto-release-jarjar.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.datastore/datastore-preferences/1.0.0-alpha02/2862d251b7a4ac5ae17fa3353b9aea45c76e707b/datastore-preferences-1.0.0-alpha02-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

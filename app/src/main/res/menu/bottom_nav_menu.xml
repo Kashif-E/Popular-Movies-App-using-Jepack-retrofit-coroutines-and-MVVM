@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="@string/popular_movies"
+        android:id="@+id/movieFragment"
+        android:icon="@drawable/ic_action_popular"/>
+    <item android:title="@string/top_rated"
+        android:id="@+id/latestMoviesFragment"
+        android:icon="@drawable/ic_action_latest"/>
+    <item android:title="@string/saved_movies"
+        android:icon="@drawable/ic_action_name"
+        android:id="@+id/savedMoviesFragment"/>
+</menu>

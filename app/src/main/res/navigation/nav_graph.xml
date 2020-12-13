@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/movieFragment">
+
+    <fragment
+        android:id="@+id/movieFragment"
+        android:name="com.infinity.movieapp.ui.Fragments.MovieFragment"
+        android:label="MovieFragment" >
+        <action
+            android:id="@+id/action_movieFragment_to_movieDetailFragment"
+            app:destination="@id/movieDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/movieDetailFragment"
+        android:name="com.infinity.movieapp.ui.Fragments.MovieDetailFragment"
+        android:label="MovieDetailFragment" >
+        <argument
+            android:name="movie"
+            app:argType="com.infinity.movieapp.models.Result" />
+    </fragment>
+    <fragment
+        android:id="@+id/savedMoviesFragment"
+        android:name="com.infinity.movieapp.ui.Fragments.SavedMoviesFragment"
+        android:label="fragment_saved_movies"
+        tools:layout="@layout/fragment_saved_movies" >
+        <action
+            android:id="@+id/action_savedMoviesFragment_to_movieDetailFragment"
+            app:destination="@id/movieDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/latestMoviesFragment"
+        android:name="com.infinity.movieapp.ui.Fragments.TopRatedFragment"
+        android:label="LatestMoviesFragment" >
+        <action
+            android:id="@+id/action_latestMoviesFragment_to_movieDetailFragment"
+            app:destination="@id/movieDetailFragment" />
+    </fragment>
+</navigation>
