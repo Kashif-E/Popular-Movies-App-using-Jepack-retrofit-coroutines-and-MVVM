@@ -3,7 +3,7 @@ package com.infinity.movieapp.api
 
 import com.infinity.movieapp.models.PopularMoviesModel
 
-import com.infinity.movieapp.util.constants.Companion.API_KEY
+import com.infinity.movieapp.util.Constants.Companion.API_KEY
 import retrofit2.Response
 
 import retrofit2.http.GET

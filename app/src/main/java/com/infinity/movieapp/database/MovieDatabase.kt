@@ -1,4 +1,4 @@
-package com.infinity.movieapp.databse
+package com.infinity.movieapp.database
 
 import android.content.Context
 import androidx.room.Database

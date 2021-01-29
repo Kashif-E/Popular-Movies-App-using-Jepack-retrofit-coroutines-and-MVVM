@@ -1,7 +1,6 @@
 package com.infinity.movieapp.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
@@ -10,26 +9,33 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.infinity.movieapp.R
 import com.infinity.movieapp.databinding.ActivityMainBinding
-import com.infinity.movieapp.databse.MovieDatabase
+import com.infinity.movieapp.database.MovieDatabase
 import com.infinity.movieapp.repository.MovieRepository
 import com.infinity.movieapp.util.DarkModeManager
 import com.infinity.movieapp.util.UiMode
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 
 class MainActivity : AppCompatActivity() {
     lateinit var viewModel: MovieViewModel
     lateinit var binding: ActivityMainBinding
-    lateinit var DarkModeManager: DarkModeManager
+    private lateinit var darkModeManager: DarkModeManager
     var isDarkMode = false
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        darkModeManager = DarkModeManager(applicationContext)
+        observeUiPreferences()
         super.onCreate(savedInstanceState)
+
 
         binding =
             DataBindingUtil.setContentView(this, R.layout.activity_main)
@@ -42,16 +48,16 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
 
+        val appBarConfiguration = AppBarConfiguration(navController.graph)
+        supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        setupActionBarWithNavController(navController, appBarConfiguration)
 
-        DarkModeManager = DarkModeManager(applicationContext)
 
-
-           observeUiPreferences()
         binding.bottomNavigationView.setupWithNavController((navController))
     }
 
     private fun observeUiPreferences() {
-        DarkModeManager.uiModeFlow.asLiveData().observe(this) { uiMode ->
+        darkModeManager.uiModeFlow.asLiveData().observe(this) { uiMode ->
             when (uiMode) {
                 UiMode.LIGHT -> removeDarkMode()
                 UiMode.DARK -> applyDarkMode()
@@ -71,12 +77,12 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launch {
             when (isDarkMode) {
                 true -> {
-                   DarkModeManager.setUiMode(UiMode.LIGHT)
+                   darkModeManager.setUiMode(UiMode.LIGHT)
                     removeDarkMode()
 
                 }
                 false -> {
-                 DarkModeManager.setUiMode(UiMode.DARK)
+                 darkModeManager.setUiMode(UiMode.DARK)
                     applyDarkMode()
                 }
             }

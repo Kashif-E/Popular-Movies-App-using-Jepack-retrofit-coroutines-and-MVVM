@@ -1,4 +1,4 @@
-package com.infinity.movieapp.databse
+package com.infinity.movieapp.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.*

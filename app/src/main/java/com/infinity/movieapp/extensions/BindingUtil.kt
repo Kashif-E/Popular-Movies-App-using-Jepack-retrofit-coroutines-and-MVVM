@@ -6,7 +6,6 @@ import com.bumptech.glide.Glide
 
 
     @BindingAdapter("poster")
-    fun loadPoster(view : ImageView, url : String)
-    {
+    fun loadPoster(view : ImageView, url : String) {
         Glide.with(view).load("https://image.tmdb.org/t/p/original/$url").into(view)
     }

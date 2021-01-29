@@ -6,6 +6,7 @@ import android.net.ConnectivityManager
 import android.net.ConnectivityManager.*
 import android.net.NetworkCapabilities.*
 import android.os.Build
+import android.util.Log
 
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
@@ -17,11 +18,10 @@ import com.infinity.movieapp.repository.MovieRepository
 import com.infinity.movieapp.util.Resource
 import kotlinx.coroutines.launch
 import retrofit2.Response
-import androidx.appcompat.app.AppCompatDelegate
 import java.io.IOException
 
 
-class MovieViewModel (app: Application, val movieRepository : MovieRepository) : AndroidViewModel(app) {
+class MovieViewModel (app: Application, private val movieRepository : MovieRepository) : AndroidViewModel(app) {
 
 
     val popularMovies : MutableLiveData <Resource<PopularMoviesModel>> = MutableLiveData()
@@ -30,14 +30,14 @@ class MovieViewModel (app: Application, val movieRepository : MovieRepository) :
         getPopularMovies()
         getLatestMovies()
     }
-    fun getPopularMovies() = viewModelScope.launch {
+    private fun getPopularMovies() = viewModelScope.launch {
 
         try {
             popularMovies.postValue(Resource.Loading())
             if (hasInternetConnection()) {
                 val response = movieRepository.getPopularMovies()
-
-                popularMovies.postValue(handleMoviesREsponse(response))
+                Log.e("viewmodel respnde" , response.toString())
+                popularMovies.postValue(handleMoviesResponse(response))
             } else {
                 popularMovies.postValue(Resource.Error("No Internet Connection"))
             }
@@ -50,14 +50,16 @@ class MovieViewModel (app: Application, val movieRepository : MovieRepository) :
     }
 
 
-        fun getLatestMovies() = viewModelScope.launch {
+        private fun getLatestMovies() = viewModelScope.launch {
 
             try {
                 latestMovies.postValue(Resource.Loading())
                 if (hasInternetConnection()) {
                     val response = movieRepository.getLatestMovies()
 
-                    latestMovies.postValue(handleMoviesREsponse(response))
+                    Log.e("viewmodel respon2e" , response.toString())
+
+                    latestMovies.postValue(handleMoviesResponse(response))
                 } else {
                     latestMovies.postValue(Resource.Error("No Internet Connection"))
                 }
@@ -72,7 +74,7 @@ class MovieViewModel (app: Application, val movieRepository : MovieRepository) :
         }
 
 
-    private fun  handleMoviesREsponse(response: Response<PopularMoviesModel>) : Resource<PopularMoviesModel>
+    private fun  handleMoviesResponse(response: Response<PopularMoviesModel>) : Resource<PopularMoviesModel>
     {
         if (response.isSuccessful)
         {
@@ -88,7 +90,7 @@ class MovieViewModel (app: Application, val movieRepository : MovieRepository) :
         movieRepository.upsert(movie)
     }
 
-    fun getSavedNews() = movieRepository.getSavedMovie()
+    fun getSavedMovies() = movieRepository.getSavedMovie()
 
 
     fun deleteArticle( movie: Result) = viewModelScope.launch {

@@ -1,21 +1,14 @@
 package com.infinity.movieapp.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.Navigation
-import androidx.navigation.findNavController
-import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.infinity.movieapp.R
 import com.infinity.movieapp.databinding.MovieCardBinding
 import com.infinity.movieapp.models.Result
-import com.infinity.movieapp.ui.Fragments.MovieFragmentDirections
 
 
 class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.MoviesViewHolder> (){
@@ -24,7 +17,7 @@ class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.MoviesViewHolder> (){
 
 
 
-    inner class  MoviesViewHolder(val itemViewBinding: MovieCardBinding): RecyclerView.ViewHolder(
+    inner class  MoviesViewHolder(private val itemViewBinding: MovieCardBinding): RecyclerView.ViewHolder(
         itemViewBinding.root
     ) {
 

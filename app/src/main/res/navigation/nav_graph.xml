@@ -7,24 +7,24 @@
 
     <fragment
         android:id="@+id/movieFragment"
-        android:name="com.infinity.movieapp.ui.Fragments.MovieFragment"
-        android:label="MovieFragment" >
+        android:name="com.infinity.movieapp.ui.fragments.PopularMoviesFragment"
+        android:label="Popular Movies" >
         <action
             android:id="@+id/action_movieFragment_to_movieDetailFragment"
             app:destination="@id/movieDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/movieDetailFragment"
-        android:name="com.infinity.movieapp.ui.Fragments.MovieDetailFragment"
-        android:label="MovieDetailFragment" >
+        android:name="com.infinity.movieapp.ui.fragments.MovieDetailFragment"
+        android:label="Movie Details">
         <argument
             android:name="movie"
             app:argType="com.infinity.movieapp.models.Result" />
     </fragment>
     <fragment
         android:id="@+id/savedMoviesFragment"
-        android:name="com.infinity.movieapp.ui.Fragments.SavedMoviesFragment"
-        android:label="fragment_saved_movies"
+        android:name="com.infinity.movieapp.ui.fragments.SavedMoviesFragment"
+        android:label="Saved Movies"
         tools:layout="@layout/fragment_saved_movies" >
         <action
             android:id="@+id/action_savedMoviesFragment_to_movieDetailFragment"
@@ -32,8 +32,8 @@
     </fragment>
     <fragment
         android:id="@+id/latestMoviesFragment"
-        android:name="com.infinity.movieapp.ui.Fragments.TopRatedFragment"
-        android:label="LatestMoviesFragment" >
+        android:name="com.infinity.movieapp.ui.fragments.TopRatedFragment"
+        android:label="Latest Movies" >
         <action
             android:id="@+id/action_latestMoviesFragment_to_movieDetailFragment"
             app:destination="@id/movieDetailFragment" />

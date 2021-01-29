@@ -6,7 +6,7 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="NONE" />
@@ -21,13 +21,48 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0a39aa7d-79ee-45b8-b802-a3e60e9cd752" name="Default Changelist" comment="changed serializable to parcelable implementation of data class" />
+    <list default="true" id="0a39aa7d-79ee-45b8-b802-a3e60e9cd752" name="Default Changelist" comment="changed serializable to parcelable implementation of data class">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/infinity/movieapp/ui/fragments/PopularMoviesFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/jarAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/taskHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/app/MovieApp.app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/MovieApp.app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/navEditor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/navEditor.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/infinity/movieapp/adapter/MoviesAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/infinity/movieapp/adapter/MoviesAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/infinity/movieapp/api/RetrofitInstance.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/infinity/movieapp/api/RetrofitInstance.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/infinity/movieapp/api/api.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/infinity/movieapp/api/api.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/infinity/movieapp/databse/MovieDatabase.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/infinity/movieapp/database/MovieDatabase.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/infinity/movieapp/databse/MoviesDao.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/infinity/movieapp/database/MoviesDao.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/infinity/movieapp/repository/MovieRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/infinity/movieapp/repository/MovieRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/infinity/movieapp/ui/Fragments/MovieDetailFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/infinity/movieapp/ui/fragments/MovieDetailFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/infinity/movieapp/ui/Fragments/MovieFragment.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/infinity/movieapp/ui/Fragments/SavedMoviesFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/infinity/movieapp/ui/fragments/SavedMoviesFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/infinity/movieapp/ui/Fragments/TopRatedFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/infinity/movieapp/ui/fragments/TopRatedFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/infinity/movieapp/ui/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/infinity/movieapp/ui/MainActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/infinity/movieapp/ui/MovieViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/infinity/movieapp/ui/MovieViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/infinity/movieapp/ui/MovieViewModelProvideFactory.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/infinity/movieapp/ui/MovieViewModelProvideFactory.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/infinity/movieapp/util/BindingUtil.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/infinity/movieapp/extensions/BindingUtil.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/infinity/movieapp/util/constants.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/infinity/movieapp/util/Constants.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/navigation/nav_graph.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/navigation/nav_graph.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[296d739d]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -49,6 +84,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitToolBoxStore">
+    <option name="projectConfigVersion" value="2" />
   </component>
   <component name="ProjectId" id="1juITgp8pgtXXJoNytW0jgOAyXo" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -277,22 +315,22 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="900" y="472" key="Github.ShareDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1607861947759" />
-    <state width="1877" height="413" key="GridCell.Tab.0.bottom" timestamp="1605596698221">
+    <state width="1737" height="409" key="GridCell.Tab.0.bottom" timestamp="1611954103991">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="413" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1605596698221" />
-    <state width="1877" height="413" key="GridCell.Tab.0.center" timestamp="1605596698213">
+    <state width="1737" height="409" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1611954103991" />
+    <state width="1737" height="409" key="GridCell.Tab.0.center" timestamp="1611954103990">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="413" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1605596698213" />
-    <state width="1877" height="413" key="GridCell.Tab.0.left" timestamp="1605596698213">
+    <state width="1737" height="409" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1611954103990" />
+    <state width="1737" height="409" key="GridCell.Tab.0.left" timestamp="1611954103990">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="413" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1605596698213" />
-    <state width="1877" height="413" key="GridCell.Tab.0.right" timestamp="1605596698221">
+    <state width="1737" height="409" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1611954103990" />
+    <state width="1737" height="409" key="GridCell.Tab.0.right" timestamp="1611954103991">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="413" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1605596698221" />
+    <state width="1737" height="409" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1611954103991" />
     <state x="461" y="170" key="SettingsEditor" timestamp="1607860870605">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -313,9 +351,9 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="616" y="243" key="run.anything.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1605183732698" />
-    <state x="623" y="227" width="672" height="678" key="search.everywhere.popup" timestamp="1604924220803">
+    <state x="623" y="227" width="672" height="678" key="search.everywhere.popup" timestamp="1611951150915">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="623" y="227" width="672" height="678" key="search.everywhere.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1604924220803" />
+    <state x="623" y="227" width="672" height="678" key="search.everywhere.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1611951150915" />
   </component>
 </project>
