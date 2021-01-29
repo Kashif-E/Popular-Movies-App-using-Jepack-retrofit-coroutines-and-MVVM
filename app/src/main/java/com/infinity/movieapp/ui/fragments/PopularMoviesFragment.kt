@@ -11,6 +11,8 @@ import androidx.navigation.fragment.findNavController
 import com.infinity.movieapp.R
 import com.infinity.movieapp.adapter.MoviesAdapter
 import com.infinity.movieapp.databinding.FragmentMovieBinding
+import com.infinity.movieapp.extensions.hide
+import com.infinity.movieapp.extensions.show
 import com.infinity.movieapp.ui.MovieViewModel
 import com.infinity.movieapp.util.Resource
 
@@ -39,15 +41,15 @@ class PopularMoviesFragment : Fragment(R.layout.fragment_movie) {
 
             when (response) {
                 is Resource.Success -> {
-                    hideProgressBar()
+                    binding.progressBar.hide()
                     moviesAdapter.differ.submitList(response.data!!.results)
                 }
                 is Resource.Loading -> {
-                    showProgressBar()
+                    binding.progressBar.show()
                 }
                 is Resource.Error -> {
                     response.message.let { message ->
-                        hideProgressBar()
+                        binding.progressBar.hide()
                         Toast.makeText(requireContext(), "$message", Toast.LENGTH_SHORT).show()
                     }
                 }
@@ -64,14 +66,6 @@ class PopularMoviesFragment : Fragment(R.layout.fragment_movie) {
 
     }
 
-    private fun showProgressBar() {
-
-        binding.progressBar.visibility = View.VISIBLE
-    }
-
-    private fun hideProgressBar() {
-        binding.progressBar.visibility = View.INVISIBLE
-    }
 
 
 }
