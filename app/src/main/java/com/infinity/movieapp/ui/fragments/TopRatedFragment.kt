@@ -1,37 +1,29 @@
-package com.infinity.movieapp.ui.Fragments
+package com.infinity.movieapp.ui.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
-import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.infinity.movieapp.R
 import com.infinity.movieapp.adapter.MoviesAdapter
 import com.infinity.movieapp.databinding.FragmentTopratedMoviesBinding
-import com.infinity.movieapp.ui.MainActivity
 import com.infinity.movieapp.ui.MovieViewModel
 import com.infinity.movieapp.util.Resource
 
 
-class TopRatedFragment : Fragment() {
+class TopRatedFragment : Fragment(R.layout.fragment_toprated_movies) {
 
 
 
     lateinit var  moviesAdapter: MoviesAdapter
     lateinit var  binding : FragmentTopratedMoviesBinding
-    lateinit var  viewModel : MovieViewModel
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_toprated_movies, container, false)
-
-        viewModel = (activity as MainActivity).viewModel
+    private val viewModel: MovieViewModel by activityViewModels()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding = FragmentTopratedMoviesBinding.bind(view)
         setUpRecyclerView()
 
         moviesAdapter.setOnItemClickListener {
@@ -43,7 +35,7 @@ class TopRatedFragment : Fragment() {
 
 
 
-        viewModel.latestMovies.observe(viewLifecycleOwner, Observer { response ->
+        viewModel.latestMovies.observe(viewLifecycleOwner, { response ->
 
 
             when (response) {
@@ -65,7 +57,6 @@ class TopRatedFragment : Fragment() {
 
         })
 
-        return binding.root
     }
 
     private fun setUpRecyclerView() {
