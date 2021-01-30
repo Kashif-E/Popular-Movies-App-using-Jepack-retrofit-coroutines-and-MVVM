@@ -25,6 +25,7 @@ class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail) {
         binding.apply {
             binding.setVariable(BR.movie,args.movie)
         }
+
         binding.fab.setOnClickListener {
             viewModel.saveArticle(args.movie)
             Snackbar.make(requireView(), "Movie Saved Successfully", Snackbar.LENGTH_SHORT).show()

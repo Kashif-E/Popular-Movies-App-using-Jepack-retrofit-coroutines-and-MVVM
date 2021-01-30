@@ -9,3 +9,5 @@ import com.bumptech.glide.Glide
     fun loadPoster(view : ImageView, url : String) {
         Glide.with(view).load("https://image.tmdb.org/t/p/original/$url").into(view)
     }
+
+

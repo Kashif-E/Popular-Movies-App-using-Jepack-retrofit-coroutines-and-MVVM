@@ -11,6 +11,7 @@ import com.infinity.movieapp.adapter.MoviesAdapter
 import com.infinity.movieapp.databinding.FragmentMovieBinding
 import com.infinity.movieapp.extensions.hide
 import com.infinity.movieapp.extensions.show
+import com.infinity.movieapp.extensions.toast
 import com.infinity.movieapp.ui.MovieViewModel
 import com.infinity.movieapp.util.Resource
 
@@ -48,7 +49,7 @@ class PopularMoviesFragment : Fragment(R.layout.fragment_movie) {
                 is Resource.Error -> {
                     response.message.let { message ->
                         binding.progressBar.hide()
-                        Toast.makeText(requireContext(), "$message", Toast.LENGTH_SHORT).show()
+                        context?.toast(message.toString())
                     }
                 }
             }

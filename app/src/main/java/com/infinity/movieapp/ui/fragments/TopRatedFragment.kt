@@ -11,6 +11,7 @@ import com.infinity.movieapp.adapter.MoviesAdapter
 import com.infinity.movieapp.databinding.FragmentTopratedMoviesBinding
 import com.infinity.movieapp.extensions.hide
 import com.infinity.movieapp.extensions.show
+import com.infinity.movieapp.extensions.toast
 import com.infinity.movieapp.ui.MovieViewModel
 import com.infinity.movieapp.util.Resource
 
@@ -50,7 +51,7 @@ class TopRatedFragment : Fragment(R.layout.fragment_toprated_movies) {
                 is Resource.Error -> {
                     response.message.let { message ->
                         binding.progressBar.hide()
-                        Toast.makeText(requireContext(), "$message", Toast.LENGTH_SHORT).show()
+                       context?.toast(message.toString())
                     }
                 }
             }

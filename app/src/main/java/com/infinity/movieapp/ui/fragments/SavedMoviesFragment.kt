@@ -34,7 +34,9 @@ class SavedMoviesFragment : Fragment(R.layout.fragment_saved_movies) {
             val bundle = Bundle().apply {
                 putParcelable("movie",it)
             }
+
             findNavController().navigate(R.id.action_savedMoviesFragment_to_movieDetailFragment,bundle)
+
         }
 
         setupSwipeToDeleteFunction()
