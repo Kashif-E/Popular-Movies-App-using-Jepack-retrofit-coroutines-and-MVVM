@@ -9,6 +9,7 @@ import android.os.Build
 import android.util.Log
 
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.infinity.movieapp.MovieApplicationClass
@@ -24,8 +25,14 @@ import java.io.IOException
 class MovieViewModel (app: Application, private val movieRepository : MovieRepository) : AndroidViewModel(app) {
 
 
-    val popularMovies : MutableLiveData <Resource<PopularMoviesModel>> = MutableLiveData()
-    val latestMovies : MutableLiveData <Resource<PopularMoviesModel>> = MutableLiveData()
+
+    private val latestMoviesMutable : MutableLiveData <Resource<PopularMoviesModel>> = MutableLiveData()
+    val latestMovies:  LiveData <Resource<PopularMoviesModel>>
+        get() = latestMoviesMutable
+   private val popularMoviesMutable : MutableLiveData <Resource<PopularMoviesModel>> = MutableLiveData()
+    val popularMovies:  LiveData <Resource<PopularMoviesModel>>
+    get() = popularMoviesMutable
+  
     init {
         getPopularMovies()
         getLatestMovies()
@@ -33,18 +40,18 @@ class MovieViewModel (app: Application, private val movieRepository : MovieRepos
     private fun getPopularMovies() = viewModelScope.launch {
 
         try {
-            popularMovies.postValue(Resource.Loading())
+            popularMoviesMutable.postValue(Resource.Loading())
             if (hasInternetConnection()) {
                 val response = movieRepository.getPopularMovies()
                 Log.e("viewmodel respnde" , response.toString())
-                popularMovies.postValue(handleMoviesResponse(response))
+                popularMoviesMutable.postValue(handleMoviesResponse(response))
             } else {
-                popularMovies.postValue(Resource.Error("No Internet Connection"))
+                popularMoviesMutable.postValue(Resource.Error("No Internet Connection"))
             }
         } catch (t: Throwable) {
             when (t) {
-                is IOException -> popularMovies.postValue(Resource.Error("Network Failure"))
-                else -> popularMovies.postValue(Resource.Error("Conversion Error"))
+                is IOException -> popularMoviesMutable.postValue(Resource.Error("Network Failure"))
+                else -> popularMoviesMutable.postValue(Resource.Error("Conversion Error"))
             }
         }
     }
@@ -53,20 +60,20 @@ class MovieViewModel (app: Application, private val movieRepository : MovieRepos
         private fun getLatestMovies() = viewModelScope.launch {
 
             try {
-                latestMovies.postValue(Resource.Loading())
+                latestMoviesMutable.postValue(Resource.Loading())
                 if (hasInternetConnection()) {
                     val response = movieRepository.getLatestMovies()
 
                     Log.e("viewmodel respon2e" , response.toString())
 
-                    latestMovies.postValue(handleMoviesResponse(response))
+                    latestMoviesMutable.postValue(handleMoviesResponse(response))
                 } else {
-                    latestMovies.postValue(Resource.Error("No Internet Connection"))
+                    latestMoviesMutable.postValue(Resource.Error("No Internet Connection"))
                 }
             }catch(t: Throwable) {
                 when(t) {
-                    is IOException -> latestMovies.postValue(Resource.Error("Network Failure"))
-                    else -> latestMovies.postValue(Resource.Error("Conversion Error"))
+                    is IOException -> latestMoviesMutable.postValue(Resource.Error("Network Failure"))
+                    else -> latestMoviesMutable.postValue(Resource.Error("Conversion Error"))
                 }
             }
 
