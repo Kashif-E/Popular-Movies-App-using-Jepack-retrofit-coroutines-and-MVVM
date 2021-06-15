@@ -5,7 +5,7 @@
     <data>
         <variable
             name="movie"
-            type="com.infinity.movieapp.models.Result" />
+            type="com.infinity.movieapp.models.domainmodel.Result" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -1,7 +1,7 @@
 package com.infinity.movieapp.api
 
 
-import com.infinity.movieapp.models.PopularMoviesModel
+import com.infinity.movieapp.models.netwrokmodels.PopularMoviesResponse
 
 import com.infinity.movieapp.util.Constants.Companion.API_KEY
 import retrofit2.Response
@@ -15,12 +15,12 @@ interface api {
    suspend fun getPopularMovies(
        @Query("api_key")
        api_key: String = API_KEY
-   ) : Response<PopularMoviesModel>
+   ) : Response<PopularMoviesResponse>
 
     @GET("/3/movie/top_rated")
     suspend fun getLatestMovies(
         @Query("api_key")
         api_key: String = API_KEY
-    ) : Response <PopularMoviesModel>
+    ) : Response <PopularMoviesResponse>
 
 }

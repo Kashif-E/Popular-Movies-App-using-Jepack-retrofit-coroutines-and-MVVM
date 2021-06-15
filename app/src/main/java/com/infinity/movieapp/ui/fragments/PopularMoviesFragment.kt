@@ -3,7 +3,6 @@ package com.infinity.movieapp.ui.fragments
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.infinity.movieapp.R
@@ -41,7 +40,7 @@ class PopularMoviesFragment : Fragment(R.layout.fragment_movie) {
             when (response) {
                 is Resource.Success -> {
                     binding.progressBar.hide()
-                    moviesAdapter.differ.submitList(response.data!!.results)
+                //    moviesAdapter.differ.submitList(response.data!!.resultNetworkModels.asDomainModel())
                 }
                 is Resource.Loading -> {
                     binding.progressBar.show()

@@ -1,12 +1,11 @@
 package com.infinity.movieapp.ui.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.View
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.snackbar.Snackbar
-import com.infinity.movieapp.BR
 import com.infinity.movieapp.R
 import com.infinity.movieapp.databinding.FragmentMovieDetailBinding
 import com.infinity.movieapp.ui.MovieViewModel
@@ -22,12 +21,11 @@ class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail) {
 
         binding = FragmentMovieDetailBinding.bind(view)
 
-        binding.apply {
-            binding.setVariable(BR.movie,args.movie)
-        }
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.movie = args.movie
 
         binding.fab.setOnClickListener {
-            viewModel.saveArticle(args.movie)
+         //   viewModel.saveArticle(args.movie.asDatabaseModel())
             Snackbar.make(requireView(), "Movie Saved Successfully", Snackbar.LENGTH_SHORT).show()
         }
     }

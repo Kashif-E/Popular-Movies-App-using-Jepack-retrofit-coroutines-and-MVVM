@@ -4,11 +4,11 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.infinity.movieapp.models.Result
+import com.infinity.movieapp.models.databasemodels.ResultDatabaseModel
 
 @Database
     (
-    entities = [Result::class],
+    entities = [ResultDatabaseModel::class],
     version = 1
 )
 
@@ -32,7 +32,7 @@ abstract class MovieDatabase : RoomDatabase(){
 
                 context.applicationContext,
                 MovieDatabase::class.java,
-                "article_db.db"
+                "movie_db.db"
             ).build()
     }
 }

@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.infinity.movieapp.R
 import com.infinity.movieapp.databinding.MovieCardBinding
-import com.infinity.movieapp.models.Result
+import com.infinity.movieapp.models.domainmodel.Result
 
 
 class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.MoviesViewHolder> (){

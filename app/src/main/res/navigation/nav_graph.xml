@@ -19,7 +19,7 @@
         android:label="Movie Details">
         <argument
             android:name="movie"
-            app:argType="com.infinity.movieapp.models.Result" />
+            app:argType="com.infinity.movieapp.models.domainmodel.Result" />
     </fragment>
     <fragment
         android:id="@+id/savedMoviesFragment"

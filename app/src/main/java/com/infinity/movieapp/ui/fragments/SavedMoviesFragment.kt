@@ -27,7 +27,7 @@ class SavedMoviesFragment : Fragment(R.layout.fragment_saved_movies) {
         setupRecycleView()
 
         viewModel.getSavedMovies().observe(viewLifecycleOwner, { movies ->
-            moviesAdapter.differ.submitList(movies)
+           // moviesAdapter.differ.submitList(movies)
         })
 
         moviesAdapter.setOnItemClickListener {
@@ -62,11 +62,11 @@ class SavedMoviesFragment : Fragment(R.layout.fragment_saved_movies) {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val position = viewHolder.adapterPosition
                 val article = moviesAdapter.differ.currentList[position]
-                viewModel.deleteArticle(article)
+              //  viewModel.deleteArticle(article)
 
                 Snackbar.make(requireView(),"Successfully deleted ", Snackbar.LENGTH_LONG).apply {
                     setAction("Undo") {
-                        viewModel.saveArticle(article)
+              //          viewModel.saveArticle(article)
                     }
                 }.show()
             }
