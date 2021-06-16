@@ -1,24 +1,23 @@
 package com.infinity.movieapp.ui
 
 import android.app.Application
-import android.content.Context
-import android.net.ConnectivityManager
-import android.net.ConnectivityManager.*
-import android.net.NetworkCapabilities.*
-import android.os.Build
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.infinity.movieapp.MovieApplicationClass
 import com.infinity.movieapp.models.databasemodels.ResultDatabaseModel
+import com.infinity.movieapp.models.databasemodels.SavedResultDatabaseModel
+import com.infinity.movieapp.models.databasemodels.asDomainModel
+import com.infinity.movieapp.models.databasemodels.toDomainModel
+import com.infinity.movieapp.models.domainmodel.Result
 import com.infinity.movieapp.models.netwrokmodels.PopularMoviesResponse
 import com.infinity.movieapp.repository.MovieRepository
 import com.infinity.movieapp.util.Resource
+import com.infinity.movieapp.util.Status
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import retrofit2.Response
-import java.io.IOException
+import kotlinx.coroutines.withContext
 
 
 class MovieViewModel(app: Application, private val movieRepository: MovieRepository) :
@@ -29,107 +28,118 @@ class MovieViewModel(app: Application, private val movieRepository: MovieReposit
         MutableLiveData()
     val latestMovies: LiveData<Resource<PopularMoviesResponse>>
         get() = latestMoviesMutable
-    private val popularMoviesMutable: MutableLiveData<Resource<PopularMoviesResponse>> =
+    private val savedMoviesMutable: MutableLiveData<Resource<List<Result>>> =
         MutableLiveData()
-    val popularMovies: LiveData<Resource<PopularMoviesResponse>>
+    val savedMovies: LiveData<Resource<List<Result>>>
+        get() = savedMoviesMutable
+    private val popularMoviesMutable: MutableLiveData<Resource<List<Result>>> =
+        MutableLiveData()
+    val popularMovies: LiveData<Resource<List<Result>>>
         get() = popularMoviesMutable
 
     init {
-        getPopularMovies()
-        getLatestMovies()
+        refreshList()
+
     }
 
-    private fun getPopularMovies() = viewModelScope.launch {
 
-        try {
-            popularMoviesMutable.postValue(Resource.Loading())
-            if (hasInternetConnection()) {
-                val response = movieRepository.getPopularMovies()
+    private fun refreshList() {
+        viewModelScope.launch(Dispatchers.IO) {
+            val response = movieRepository.refreshMovieList()
+            withContext(Dispatchers.Main) {
+                when (response.status) {
+                    Status.ERROR -> {
+                        withContext(Dispatchers.IO) {
 
-                popularMoviesMutable.postValue(handleMoviesResponse(response))
-            } else {
-                popularMoviesMutable.postValue(Resource.Error("No Internet Connection"))
-            }
-        } catch (t: Throwable) {
-            when (t) {
-                is IOException -> popularMoviesMutable.postValue(Resource.Error("Network Failure"))
-                else -> popularMoviesMutable.postValue(Resource.Error("Conversion Error"))
+                            handleMoviesResponse(response.message,
+                                movieRepository.getPopularMovies())
+                        }
+
+                    }
+
+
+                    Status.SUCCESS -> {
+                        response.data?.forEach {
+                            movieRepository.addMoviesToDb(it)
+                        }
+                        withContext(Dispatchers.IO) {
+                            handleMoviesResponse(response.message,
+                                movieRepository.getPopularMovies())
+                        }
+                    }
+                    Status.LOADING -> {
+
+                    }
+
+                    else -> {
+
+                        withContext(Dispatchers.IO) {
+
+                            handleMoviesResponse("Something Went Wrong",
+                                movieRepository.getPopularMovies())
+                        }
+                    }
+                }
             }
         }
+
     }
 
 
-    private fun getLatestMovies() = viewModelScope.launch {
+/*    private fun getLatestMovies() = viewModelScope.launch {
 
-        try {
+
             latestMoviesMutable.postValue(Resource.Loading())
             if (hasInternetConnection()) {
                 val response = movieRepository.getLatestMovies()
-
-                Log.e("viewmodel respon2e", response.toString())
-
                 latestMoviesMutable.postValue(handleMoviesResponse(response))
             } else {
                 latestMoviesMutable.postValue(Resource.Error("No Internet Connection"))
             }
-        } catch (t: Throwable) {
-            when (t) {
-                is IOException -> latestMoviesMutable.postValue(Resource.Error("Network Failure"))
-                else -> latestMoviesMutable.postValue(Resource.Error("Conversion Error"))
-            }
-        }
 
 
-    }
+
+    }*/
 
 
-    private fun handleMoviesResponse(response: Response<PopularMoviesResponse>): Resource<PopularMoviesResponse> {
-        if (response.isSuccessful) {
-            response.body()?.let { result: PopularMoviesResponse ->
-                return Resource.Success(result)
-            }
-        }
+    private fun handleMoviesResponse(message: String?, popularMovies: List<ResultDatabaseModel>) {
 
-        return Resource.Error(response.message())
-    }
+        popularMoviesMutable.postValue(Resource.Loading(emptyList(),
+            responseCode = 0))
 
-    fun saveArticle(movie: ResultDatabaseModel) = viewModelScope.launch {
-        movieRepository.upsert(movie)
-    }
+        if (popularMovies.asDomainModel().isNotEmpty()) {
 
-    fun getSavedMovies() = movieRepository.getSavedMovie()
-
-
-    fun deleteArticle(movie: ResultDatabaseModel) = viewModelScope.launch {
-        movieRepository.deleteMovie(movie)
-    }
-
-    private fun hasInternetConnection(): Boolean {
-
-        val connectivityManager = getApplication<MovieApplicationClass>().getSystemService(
-            Context.CONNECTIVITY_SERVICE
-        ) as ConnectivityManager
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            val network = connectivityManager.activeNetwork ?: return false
-            val capabilities = connectivityManager.getNetworkCapabilities(network) ?: return false
-            return when {
-                capabilities.hasTransport(TRANSPORT_WIFI) -> true
-                capabilities.hasTransport(TRANSPORT_CELLULAR) -> true
-                capabilities.hasTransport(TRANSPORT_ETHERNET) -> true
-                else -> false
-            }
+            popularMoviesMutable.postValue(Resource.Success(popularMovies.asDomainModel(),
+                responseCode = 0))
         } else {
-            connectivityManager.activeNetworkInfo?.run {
-                return when (type) {
-                    TYPE_WIFI -> true
-                    TYPE_MOBILE -> true
-                    TYPE_ETHERNET -> true
-                    else -> false
-                }
-            }
+            popularMoviesMutable.postValue(Resource.Error(message!!,
+                responseCode = 0,
+                data = null))
         }
-        return false
+
+    }
+
+
+    fun saveMovie(movie: SavedResultDatabaseModel) = viewModelScope.launch {
+        movieRepository.upsertSavedMoviesToDb(movie)
+    }
+
+    fun getSavedMovies() {
+        viewModelScope.launch(Dispatchers.IO) {
+            val savedMovies = movieRepository.getSavedMovies()
+
+            savedMoviesMutable.postValue(Resource.Success(savedMovies.toDomainModel() as MutableList<Result>,
+                0))
+        }
+    }
+
+
+    fun deleteMovie(movie: SavedResultDatabaseModel) = viewModelScope.launch(Dispatchers.IO) {
+
+        movieRepository.deleteMovie(movie)
+        movieRepository.getSavedMovies()
+
+
     }
 
 

@@ -8,6 +8,7 @@ import androidx.navigation.fragment.navArgs
 import com.google.android.material.snackbar.Snackbar
 import com.infinity.movieapp.R
 import com.infinity.movieapp.databinding.FragmentMovieDetailBinding
+import com.infinity.movieapp.models.domainmodel.asDataBaseModel
 import com.infinity.movieapp.ui.MovieViewModel
 
 class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail) {
@@ -25,7 +26,7 @@ class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail) {
         binding.movie = args.movie
 
         binding.fab.setOnClickListener {
-         //   viewModel.saveArticle(args.movie.asDatabaseModel())
+         viewModel.saveMovie(args.movie.asDataBaseModel())
             Snackbar.make(requireView(), "Movie Saved Successfully", Snackbar.LENGTH_SHORT).show()
         }
     }

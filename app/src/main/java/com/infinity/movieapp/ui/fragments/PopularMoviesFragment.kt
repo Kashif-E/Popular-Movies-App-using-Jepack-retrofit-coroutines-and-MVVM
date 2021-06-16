@@ -27,6 +27,7 @@ class PopularMoviesFragment : Fragment(R.layout.fragment_movie) {
 
         setUpRecyclerView()
 
+
         moviesAdapter.setOnItemClickListener {
             val bundle = Bundle().apply {
                 putParcelable("movie",it)
@@ -35,12 +36,11 @@ class PopularMoviesFragment : Fragment(R.layout.fragment_movie) {
         }
 
         viewModel.popularMovies.observe(viewLifecycleOwner,  { response ->
-
-
             when (response) {
                 is Resource.Success -> {
                     binding.progressBar.hide()
-                //    moviesAdapter.differ.submitList(response.data!!.resultNetworkModels.asDomainModel())
+                        //database to domain model
+                    moviesAdapter.differ.submitList(response.data!!)
                 }
                 is Resource.Loading -> {
                     binding.progressBar.show()
@@ -50,6 +50,9 @@ class PopularMoviesFragment : Fragment(R.layout.fragment_movie) {
                         binding.progressBar.hide()
                         context?.toast(message.toString())
                     }
+                }
+                else -> {
+                    context?.toast(response.message.toString())
                 }
             }
 

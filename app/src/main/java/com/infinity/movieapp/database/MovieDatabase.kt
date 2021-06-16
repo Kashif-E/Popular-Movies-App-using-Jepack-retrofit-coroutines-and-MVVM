@@ -5,16 +5,18 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.infinity.movieapp.models.databasemodels.ResultDatabaseModel
+import com.infinity.movieapp.models.databasemodels.SavedResultDatabaseModel
 
 @Database
     (
-    entities = [ResultDatabaseModel::class],
-    version = 1
+    entities = [ResultDatabaseModel::class,SavedResultDatabaseModel::class ],
+    version = 2
 )
 
 abstract class MovieDatabase : RoomDatabase(){
 
     abstract  fun getMovieDAO() : MoviesDao
+    abstract fun getSavedMoviesDao() : SavedMoviesDao
 
     companion object
     {

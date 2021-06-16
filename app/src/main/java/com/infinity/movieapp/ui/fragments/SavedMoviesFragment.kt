@@ -1,6 +1,7 @@
 package com.infinity.movieapp.ui.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.fragment.app.activityViewModels
@@ -11,6 +12,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.infinity.movieapp.R
 import com.infinity.movieapp.adapter.MoviesAdapter
 import com.infinity.movieapp.databinding.FragmentSavedMoviesBinding
+import com.infinity.movieapp.models.domainmodel.asDataBaseModel
 import com.infinity.movieapp.ui.MovieViewModel
 
 
@@ -26,10 +28,8 @@ class SavedMoviesFragment : Fragment(R.layout.fragment_saved_movies) {
         binding = FragmentSavedMoviesBinding.bind(view)
         setupRecycleView()
 
-        viewModel.getSavedMovies().observe(viewLifecycleOwner, { movies ->
-           // moviesAdapter.differ.submitList(movies)
-        })
 
+      observeMutables()
         moviesAdapter.setOnItemClickListener {
             val bundle = Bundle().apply {
                 putParcelable("movie",it)
@@ -42,6 +42,13 @@ class SavedMoviesFragment : Fragment(R.layout.fragment_saved_movies) {
         setupSwipeToDeleteFunction()
 
 
+    }
+
+    private fun observeMutables() {
+        viewModel.savedMovies.observe(viewLifecycleOwner, { movies ->
+            Log.e("data", "changed")
+            moviesAdapter.differ.submitList(movies.data)
+        })
     }
 
     private fun setupSwipeToDeleteFunction() {
@@ -61,12 +68,13 @@ class SavedMoviesFragment : Fragment(R.layout.fragment_saved_movies) {
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val position = viewHolder.adapterPosition
-                val article = moviesAdapter.differ.currentList[position]
-              //  viewModel.deleteArticle(article)
+                val movie = moviesAdapter.differ.currentList[position]
+              viewModel.deleteMovie(movie = movie.asDataBaseModel())
+
 
                 Snackbar.make(requireView(),"Successfully deleted ", Snackbar.LENGTH_LONG).apply {
                     setAction("Undo") {
-              //          viewModel.saveArticle(article)
+                     viewModel.saveMovie(movie.asDataBaseModel())
                     }
                 }.show()
             }
@@ -81,6 +89,11 @@ class SavedMoviesFragment : Fragment(R.layout.fragment_saved_movies) {
     private fun setupRecycleView() {
         moviesAdapter = MoviesAdapter()
         binding.recyclerView.adapter = moviesAdapter
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.getSavedMovies()
     }
 
 
