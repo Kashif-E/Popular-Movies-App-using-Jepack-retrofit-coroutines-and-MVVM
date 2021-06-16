@@ -25,6 +25,8 @@ data class ResultDatabaseModel(
     val release_date: String,
     val title: String,
     val vote_average: String,
+    val popular : Boolean,
+    val latest : Boolean
 ) : Parcelable
 
 fun List<ResultDatabaseModel>.asDomainModel(): List<Result> {
@@ -38,7 +40,9 @@ fun List<ResultDatabaseModel>.asDomainModel(): List<Result> {
             poster_path = it.poster_path,
             release_date = it.release_date,
             title = it.title,
-            vote_average = it.vote_average
+            vote_average = it.vote_average,
+            popular = it.popular,
+            latest = it.latest
 
         )
     }
@@ -60,6 +64,8 @@ data class SavedResultDatabaseModel(
     val release_date: String,
     val title: String,
     val vote_average: String,
+    val popular : Boolean,
+    val latest : Boolean,
 ) : Parcelable
 
 fun List<SavedResultDatabaseModel>.toDomainModel(): List<Result> {
@@ -73,7 +79,9 @@ fun List<SavedResultDatabaseModel>.toDomainModel(): List<Result> {
             poster_path = it.poster_path,
             release_date = it.release_date,
             title = it.title,
-            vote_average = it.vote_average
+            vote_average = it.vote_average,
+            latest = it.latest,
+            popular = it.popular
 
         )
     }

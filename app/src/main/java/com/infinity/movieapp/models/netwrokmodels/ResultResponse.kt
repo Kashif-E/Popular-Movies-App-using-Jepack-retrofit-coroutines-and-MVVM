@@ -25,7 +25,7 @@ data class ResultResponse(
     @field:Json(name = "vote_average")
     val vote_average: String?
 )
-fun List<ResultResponse>.asDataBaseModel(): List<ResultDatabaseModel> {
+fun List<ResultResponse>.asDataBaseModel(popularMovies : Boolean = false , latestMovies : Boolean = false): List<ResultDatabaseModel> {
     return map {
        ResultDatabaseModel(
            id = it.id!!,
@@ -36,7 +36,9 @@ fun List<ResultResponse>.asDataBaseModel(): List<ResultDatabaseModel> {
            poster_path = it.poster_path!!,
            release_date = it.release_date!!,
            title = it.title!!,
-           vote_average = it.vote_average!!
+           vote_average = it.vote_average!!,
+           popular =  popularMovies,
+           latest =  latestMovies
 
        )
     }

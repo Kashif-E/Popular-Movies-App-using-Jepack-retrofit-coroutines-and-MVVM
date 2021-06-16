@@ -29,6 +29,8 @@ data class Result(
     val release_date: String,
     val title: String,
     val vote_average: String,
+    val popular : Boolean,
+    val latest : Boolean
 ) : Parcelable
 
 fun Result.asDataBaseModel()=
@@ -41,6 +43,8 @@ fun Result.asDataBaseModel()=
         poster_path = this.poster_path!!,
         release_date = this.release_date!!,
         title = this.title!!,
-        vote_average = this.vote_average!!
+        vote_average = this.vote_average!!,
+        popular = this.popular,
+        latest =this.latest
 
     )

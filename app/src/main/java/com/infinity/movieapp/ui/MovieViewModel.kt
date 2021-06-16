@@ -1,7 +1,6 @@
 package com.infinity.movieapp.ui
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -24,9 +23,9 @@ class MovieViewModel(app: Application, private val movieRepository: MovieReposit
     AndroidViewModel(app) {
 
 
-    private val latestMoviesMutable: MutableLiveData<Resource<PopularMoviesResponse>> =
+    private val latestMoviesMutable:  MutableLiveData<Resource<List<Result>>>  =
         MutableLiveData()
-    val latestMovies: LiveData<Resource<PopularMoviesResponse>>
+    val latestMovies: LiveData<Resource<List<Result>>>
         get() = latestMoviesMutable
     private val savedMoviesMutable: MutableLiveData<Resource<List<Result>>> =
         MutableLiveData()
@@ -38,21 +37,21 @@ class MovieViewModel(app: Application, private val movieRepository: MovieReposit
         get() = popularMoviesMutable
 
     init {
-        refreshList()
+        getPopularMoviesList()
+        getLatestMoviesList()
 
     }
 
 
-    private fun refreshList() {
+    private fun getPopularMoviesList() {
         viewModelScope.launch(Dispatchers.IO) {
-            val response = movieRepository.refreshMovieList()
+            val response = movieRepository.refreshPopularMovieList()
             withContext(Dispatchers.Main) {
                 when (response.status) {
                     Status.ERROR -> {
                         withContext(Dispatchers.IO) {
-
                             handleMoviesResponse(response.message,
-                                movieRepository.getPopularMovies())
+                                movieRepository.getPopularMovies(), popularMoviesMutable)
                         }
 
                     }
@@ -64,7 +63,7 @@ class MovieViewModel(app: Application, private val movieRepository: MovieReposit
                         }
                         withContext(Dispatchers.IO) {
                             handleMoviesResponse(response.message,
-                                movieRepository.getPopularMovies())
+                                movieRepository.getPopularMovies(), popularMoviesMutable)
                         }
                     }
                     Status.LOADING -> {
@@ -74,10 +73,53 @@ class MovieViewModel(app: Application, private val movieRepository: MovieReposit
                     else -> {
 
                         withContext(Dispatchers.IO) {
-
-                            handleMoviesResponse("Something Went Wrong",
-                                movieRepository.getPopularMovies())
+                            handleMoviesResponse(response.message,
+                                movieRepository.getPopularMovies(), popularMoviesMutable)
                         }
+                    }
+                }
+            }
+        }
+
+    }
+    private fun getLatestMoviesList() {
+        viewModelScope.launch(Dispatchers.IO) {
+            val response = movieRepository.refreshlatestMovieList()
+            withContext(Dispatchers.Main) {
+                when (response.status) {
+                    Status.ERROR -> {
+                        withContext(Dispatchers.IO) {
+
+                            handleMoviesResponse(response.message,
+                                movieRepository.getLatestMovies(), latestMoviesMutable)
+                        }
+
+                    }
+
+
+                    Status.SUCCESS -> {
+                        response.data?.forEach {
+                            movieRepository.addMoviesToDb(it)
+                        }
+                        withContext(Dispatchers.IO) {
+
+                            handleMoviesResponse(response.message,
+                                movieRepository.getLatestMovies(), latestMoviesMutable)
+                        }
+
+                    }
+                    Status.LOADING -> {
+
+                    }
+
+                    else -> {
+
+                        withContext(Dispatchers.IO) {
+
+                            handleMoviesResponse(response.message,
+                                movieRepository.getLatestMovies(), latestMoviesMutable)
+                        }
+
                     }
                 }
             }
@@ -102,19 +144,16 @@ class MovieViewModel(app: Application, private val movieRepository: MovieReposit
     }*/
 
 
-    private fun handleMoviesResponse(message: String?, popularMovies: List<ResultDatabaseModel>) {
+    private fun handleMoviesResponse(message: String?, movies: List<ResultDatabaseModel>, list : MutableLiveData<Resource<List<Result>>>) {
 
-        popularMoviesMutable.postValue(Resource.Loading(emptyList(),
-            responseCode = 0))
 
-        if (popularMovies.asDomainModel().isNotEmpty()) {
+        if (movies.asDomainModel().isNotEmpty()) {
 
-            popularMoviesMutable.postValue(Resource.Success(popularMovies.asDomainModel(),
+            list.postValue(Resource.Success(movies.asDomainModel(),
                 responseCode = 0))
         } else {
-            popularMoviesMutable.postValue(Resource.Error(message!!,
-                responseCode = 0,
-                data = null))
+            list.postValue(Resource.Error(message!!,
+                responseCode = 0, data = emptyList()))
         }
 
     }

@@ -11,8 +11,10 @@ interface MoviesDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun upsert(movie : ResultDatabaseModel): Long
 
-    @Query("SELECT * FROM movies")
-    fun getAllMovie():List<ResultDatabaseModel>
+    @Query("SELECT * FROM movies WHERE popular")
+    fun getAllPopularMovies():List<ResultDatabaseModel>
+    @Query("SELECT * FROM movies WHERE latest")
+    fun getAlllatestMovies():List<ResultDatabaseModel>
 
 
     @Delete

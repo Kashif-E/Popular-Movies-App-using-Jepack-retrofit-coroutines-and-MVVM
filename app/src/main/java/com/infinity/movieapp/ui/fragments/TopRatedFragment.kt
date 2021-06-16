@@ -42,7 +42,7 @@ class TopRatedFragment : Fragment(R.layout.fragment_toprated_movies) {
             when (response) {
                 is Resource.Success -> {
                     binding.progressBar.hide()
-                //    moviesAdapter.differ.submitList(response.data!!.resultNetworkModels)
+                 moviesAdapter.differ.submitList(response.data!!)
                 }
                 is Resource.Loading -> {
                     binding.progressBar.show()
