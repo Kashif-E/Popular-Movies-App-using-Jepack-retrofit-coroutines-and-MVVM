@@ -1,10 +1,8 @@
 package com.infinity.movieapp.util
 
-import android.content.Context
-import android.net.ConnectivityManager
-import android.net.NetworkCapabilities
-import android.os.Build
+import androidx.lifecycle.asLiveData
 import com.infinity.movieapp.MovieApplicationClass
+import kotlinx.coroutines.Dispatchers
 import okhttp3.Interceptor
 import okhttp3.Response
 import okio.IOException
@@ -12,9 +10,25 @@ import okio.IOException
 
 open class ConnectivityInterceptor : Interceptor {
 
+    val state =
+        NetworkStatusTracker(MovieApplicationClass.getInstance().baseContext).networkStatus
+            .map(
+                onAvailable = { MyState.Fetched },
+                onUnavailable = { MyState.Error }
+            )
+            .asLiveData(Dispatchers.IO)
+
     private val isConnected: Boolean
         get() {
-            return isInternetAvailable(MovieApplicationClass.getInstance())
+            return when(state.value){
+                is MyState.Fetched ->{
+                    return true
+                }
+                is MyState.Error->{
+                    return false
+                }
+                else -> false
+            }
         }
 
 
@@ -26,7 +40,7 @@ open class ConnectivityInterceptor : Interceptor {
             throw NoNetworkException()
         }
         return chain.proceed(originalRequest)
-    }
+}
 
     class NoNetworkException internal constructor() :
         IOException(Status.NO_INTERNET_CONNECTION.toString())

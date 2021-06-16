@@ -1,10 +1,7 @@
 package com.infinity.movieapp.ui
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.infinity.movieapp.models.databasemodels.ResultDatabaseModel
 import com.infinity.movieapp.models.databasemodels.SavedResultDatabaseModel
 import com.infinity.movieapp.models.databasemodels.asDomainModel
@@ -12,8 +9,7 @@ import com.infinity.movieapp.models.databasemodels.toDomainModel
 import com.infinity.movieapp.models.domainmodel.Result
 import com.infinity.movieapp.models.netwrokmodels.PopularMoviesResponse
 import com.infinity.movieapp.repository.MovieRepository
-import com.infinity.movieapp.util.Resource
-import com.infinity.movieapp.util.Status
+import com.infinity.movieapp.util.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -36,6 +32,12 @@ class MovieViewModel(app: Application, private val movieRepository: MovieReposit
     val popularMovies: LiveData<Resource<List<Result>>>
         get() = popularMoviesMutable
 
+    var state  = NetworkStatusTracker(app).networkStatus
+        .map(
+            onAvailable = { MyState.Fetched },
+            onUnavailable = { MyState.Error }
+        )
+        .asLiveData(Dispatchers.IO)
     init {
         getPopularMoviesList()
         getLatestMoviesList()

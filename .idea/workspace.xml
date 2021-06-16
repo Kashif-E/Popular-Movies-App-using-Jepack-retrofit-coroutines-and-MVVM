@@ -22,7 +22,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0a39aa7d-79ee-45b8-b802-a3e60e9cd752" name="Default Changelist" comment="offline caching with room, resource class updated for more precise errors">
+    <list default="true" id="0a39aa7d-79ee-45b8-b802-a3e60e9cd752" name="Default Changelist" comment="latest movies caching added">
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/nointernet.PNG" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" afterDir="false" />
@@ -35,13 +36,11 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/infinity/movieapp/database/MoviesDao.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/infinity/movieapp/database/MoviesDao.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/infinity/movieapp/models/databasemodels/ResultDatabaseModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/infinity/movieapp/models/databasemodels/ResultDatabaseModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/infinity/movieapp/models/domainmodel/Result.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/infinity/movieapp/models/domainmodel/Result.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/infinity/movieapp/models/netwrokmodels/ResultResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/infinity/movieapp/models/netwrokmodels/ResultResponse.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/infinity/movieapp/repository/MovieRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/infinity/movieapp/repository/MovieRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/infinity/movieapp/extensions/BindingUtil.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/infinity/movieapp/extensions/BindingUtil.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/infinity/movieapp/ui/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/infinity/movieapp/ui/MainActivity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/infinity/movieapp/ui/MovieViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/infinity/movieapp/ui/MovieViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/infinity/movieapp/ui/fragments/TopRatedFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/infinity/movieapp/ui/fragments/TopRatedFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/infinity/movieapp/util/AppUtils.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/infinity/movieapp/util/AppUtils.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/infinity/movieapp/util/ConnectivityInterceptor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/infinity/movieapp/util/ConnectivityInterceptor.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -301,7 +300,14 @@
       <option name="project" value="LOCAL" />
       <updated>1623840508773</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="latest movies caching added">
+      <created>1623843897540</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1623843897540</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -334,6 +340,7 @@
     <MESSAGE value="Added Encapsulation to MovieViewModel.kt" />
     <MESSAGE value="moved from Gson to Moshi Converter factory" />
     <MESSAGE value="offline caching with room, resource class updated for more precise errors" />
-    <option name="LAST_COMMIT_MESSAGE" value="offline caching with room, resource class updated for more precise errors" />
+    <MESSAGE value="latest movies caching added" />
+    <option name="LAST_COMMIT_MESSAGE" value="latest movies caching added" />
   </component>
 </project>

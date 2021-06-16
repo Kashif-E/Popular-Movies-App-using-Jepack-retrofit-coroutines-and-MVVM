@@ -1,11 +1,13 @@
 package com.infinity.movieapp.ui
 
+import android.content.Context
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
@@ -17,9 +19,10 @@ import androidx.navigation.ui.setupWithNavController
 import com.infinity.movieapp.R
 import com.infinity.movieapp.databinding.ActivityMainBinding
 import com.infinity.movieapp.database.MovieDatabase
+import com.infinity.movieapp.extensions.toast
 import com.infinity.movieapp.repository.MovieRepository
-import com.infinity.movieapp.util.DarkModeManager
-import com.infinity.movieapp.util.UiMode
+import com.infinity.movieapp.util.*
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
@@ -30,11 +33,16 @@ class MainActivity : AppCompatActivity() {
     var isDarkMode = false
 
 
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         darkModeManager = DarkModeManager(applicationContext)
         observeUiPreferences()
         super.onCreate(savedInstanceState)
+
+
 
 
         binding =
@@ -51,9 +59,18 @@ class MainActivity : AppCompatActivity() {
         val appBarConfiguration = AppBarConfiguration(navController.graph)
         supportActionBar?.setDisplayHomeAsUpEnabled(false)
         setupActionBarWithNavController(navController, appBarConfiguration)
-
-
         binding.bottomNavigationView.setupWithNavController((navController))
+
+        viewModel.state.observe(this,{
+            when(it){
+                is MyState.Fetched ->{
+                    this.toast("Internet Available")
+                }
+                is MyState.Error->{
+                    this.toast("Internet Unavailable")
+                }
+            }
+        })
     }
 
     private fun observeUiPreferences() {

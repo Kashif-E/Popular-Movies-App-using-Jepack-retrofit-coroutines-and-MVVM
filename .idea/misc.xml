@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/kashif.mehmood/AndroidStudioProjects/MvvmPopularMoviesAppWithDarkMode/app/src/main/res/layout/activity_main.xml" value="0.2957427536231884" />
         <entry key="..\:/Users/kashif.mehmood/AndroidStudioProjects/MvvmPopularMoviesAppWithDarkMode/app/src/main/res/layout/fragment_movie_detail.xml" value="0.20260416666666667" />
         <entry key="..\:/Users/kashif.mehmood/AndroidStudioProjects/MvvmPopularMoviesAppWithDarkMode/app/src/main/res/layout/movie_card.xml" value="0.20260416666666667" />
       </map>
