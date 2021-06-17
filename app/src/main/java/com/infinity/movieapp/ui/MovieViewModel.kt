@@ -12,8 +12,6 @@ import com.infinity.movieapp.repository.MovieRepository
 import com.infinity.movieapp.util.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.FlowPreview
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
 
@@ -53,9 +51,6 @@ class MovieViewModel(app: Application, private val movieRepository: MovieReposit
 
 
         when (isFirtTime) {
-            IsFirst.NO -> {
-                false
-            }
             IsFirst.FIRST -> {
                 viewModelScope.launch(Dispatchers.IO) {
 
@@ -70,7 +65,7 @@ class MovieViewModel(app: Application, private val movieRepository: MovieReposit
 
             }
         }
-        
+
         getpopularMovies()
         getLatestMovies()
         /* getPopularMoviesList()
