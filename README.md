@@ -1,4 +1,4 @@
-#  A Simple Popular Movies App
+#  A Simple Popular Movies App Using Latest Android Development techniques
 Popular movies app is built with TMDB API to promote MAD skills, Clean architecture and show case modern android development techniques, such as coroutines, room database , data store instead of shared preferences and jetpack components working in harmony with retrofit to parse and display data.
 
 Libraries Used:
@@ -20,7 +20,11 @@ work manager | WorkManager is used so that data is refreshed only once a day
 
 
 
-https://user-images.githubusercontent.com/61690178/122466540-e2cb7b00-cfd2-11eb-915f-f3075eab7fab.mp4
+
+
+https://user-images.githubusercontent.com/61690178/122468449-2921d980-cfd5-11eb-9580-10bc21b4a4ed.mp4
+
+
 
 
 
