@@ -1,0 +1,17 @@
+<component name="libraryTable">
+  <library name="Gradle: com.google.accompanist:accompanist-glide:0.12.0@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/16b0d3ccdd17cbb3a2a51a869e11c883/jetified-accompanist-glide-0.12.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/ac46bda4538e86ff7ff931a891e008ec/jetified-accompanist-glide-0.12.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/56d14c75e1008b0549c856cdd9e4a14b/transformed/jetified-accompanist-glide-0.12.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/56d14c75e1008b0549c856cdd9e4a14b/transformed/jetified-accompanist-glide-0.12.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/56d14c75e1008b0549c856cdd9e4a14b/transformed/jetified-accompanist-glide-0.12.0/res" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.accompanist/accompanist-glide/0.12.0/135ed4bdfce9e7bd1eb85088ba369709dd1fe290/accompanist-glide-0.12.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.accompanist/accompanist-glide/0.12.0/6232eefd1b380f45b164796569f3a528e34681e0/accompanist-glide-0.12.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

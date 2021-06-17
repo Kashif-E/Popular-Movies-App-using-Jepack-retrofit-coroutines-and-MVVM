@@ -1,5 +1,6 @@
 package com.infinity.movieapp.ui
 
+
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -9,26 +10,24 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.infinity.movieapp.R
-import com.infinity.movieapp.databinding.ActivityMainBinding
 import com.infinity.movieapp.database.MovieDatabase
+import com.infinity.movieapp.databinding.ActivityMainBinding
 import com.infinity.movieapp.extensions.toast
 import com.infinity.movieapp.repository.MovieRepository
 import com.infinity.movieapp.util.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 
 
 class MainActivity : AppCompatActivity() {
     lateinit var viewModel: MovieViewModel
     lateinit var binding: ActivityMainBinding
-    lateinit var repository : MovieRepository
+    lateinit var repository: MovieRepository
     private lateinit var dataStoreManager: DataStoreManager
     var isDarkMode = false
 
@@ -40,7 +39,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding =
             DataBindingUtil.setContentView(this, R.layout.activity_main)
-         repository = MovieRepository(MovieDatabase.invoke(this))
+        repository = MovieRepository(MovieDatabase.invoke(this))
 
         val viewModelProviderFactory = MovieViewModelProvideFactory(application, repository)
         viewModel =
@@ -52,7 +51,7 @@ class MainActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
 
         val appBarConfiguration = AppBarConfiguration(navController.graph)
-        supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         setupActionBarWithNavController(navController, appBarConfiguration)
         binding.bottomNavigationView.setupWithNavController((navController))
 
@@ -67,7 +66,6 @@ class MainActivity : AppCompatActivity() {
             }
         })
     }
-
 
 
     private fun observeUiPreferences() {
@@ -89,23 +87,31 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
-        lifecycleScope.launch {
-            when (isDarkMode) {
-                true -> {
-                    dataStoreManager.setUiMode(UiMode.LIGHT)
-                    removeDarkMode()
+        if (item.itemId == R.id.app_bar_switch) {
+            lifecycleScope.launch {
+                when (isDarkMode) {
+                    true -> {
+                        dataStoreManager.setUiMode(UiMode.LIGHT)
+                        removeDarkMode()
 
-                }
-                false -> {
-                    dataStoreManager.setUiMode(UiMode.DARK)
-                    applyDarkMode()
+                    }
+                    false -> {
+                        dataStoreManager.setUiMode(UiMode.DARK)
+                        applyDarkMode()
+                    }
                 }
             }
+            return true
         }
+
 
         return super.onOptionsItemSelected(item)
     }
 
+    override fun onSupportNavigateUp(): Boolean {
+        return (Navigation.findNavController(this, R.id.nav_host_fragment).navigateUp()
+                || super.onSupportNavigateUp())
+    }
 
     private fun removeDarkMode() {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
