@@ -34,11 +34,11 @@ sealed class Resource<out T>(
         responseCode
     )
 
-    class Loading<T>(data: T?, responseCode: Int) : Resource<T>(
+    class Loading<T>() : Resource<T>(
         Status.LOADING,
-        data,
+        data= null,
         null,
-        responseCode
+        responseCode=0
     )
 }
 

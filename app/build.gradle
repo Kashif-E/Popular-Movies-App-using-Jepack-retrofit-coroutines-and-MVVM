@@ -81,5 +81,8 @@ dependencies {
 
     implementation "androidx.datastore:datastore-preferences:1.0.0-alpha02"
 
+    // WorkManager
+    implementation "android.arch.work:work-runtime-ktx:1.0.1"
+
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 }
