@@ -42,27 +42,17 @@ class MovieViewModel(app: Application, private val movieRepository: MovieReposit
 
 
     init {
-
         val isFirtTime =
             DataStoreManager(MovieApplicationClass.getInstance().baseContext).isFirstTimeFlow.asLiveData(
                 Dispatchers.IO).value
-
-
-
-
         when (isFirtTime) {
             IsFirst.FIRST -> {
                 viewModelScope.launch(Dispatchers.IO) {
-
                     movieRepository.refreshLatestMovieList()
                     movieRepository.refreshPopularMovieList()
                     DataStoreManager(MovieApplicationClass.getInstance().baseContext).setFirstTime(
                         IsFirst.NO)
-
                 }
-            }
-            else -> {
-
             }
         }
 
@@ -195,7 +185,6 @@ class MovieViewModel(app: Application, private val movieRepository: MovieReposit
         movies: List<ResultDatabaseModel>,
         list: MutableLiveData<Resource<List<Result>>>,
     ) {
-
         list.postValue(Resource.Loading())
         if (movies.asDomainModel().isNotEmpty()) {
 
@@ -224,11 +213,8 @@ class MovieViewModel(app: Application, private val movieRepository: MovieReposit
 
 
     fun deleteMovie(movie: SavedResultDatabaseModel) = viewModelScope.launch(Dispatchers.IO) {
-
         movieRepository.deleteMovie(movie)
         movieRepository.getSavedMovies()
-
-
     }
 
 
