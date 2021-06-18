@@ -1,5 +1,5 @@
 #  A Simple Popular Movies App Using Latest Android Development techniques
-Popular movies app is built with TMDB API to promote MAD skills, Clean architecture and show case modern android development techniques, such as coroutines, room database , data store instead of shared preferences and jetpack components working in harmony with retrofit to parse and display data.
+Popular movies app is built with TMDB API to promote MAD skills, Clean architecture and showcase modern android development techniques, such as coroutines, room database , data store instead of shared preferences and jetpack components working in harmony with retrofit to parse and display data.
 
 Libraries Used:
 
