@@ -24,11 +24,10 @@ class MovieRepository(private val db: MovieDatabase) {
             val response = RetrofitInstance.api.getPopularMoviesAsync()
 
             if (response.isSuccessful) {
-              val result=  MovieApplicationClass.getInstance().getResponseHandler()
+              MovieApplicationClass.getInstance().getResponseHandler()
                     .handleSuccess(response.body()!!.results.asDataBaseModel(popularMovies = true),
                         response.code())
-                handleResult(result)
-               return result
+
             } else {
                 MovieApplicationClass.getInstance().getResponseHandler()
                     .handleException(response.errorBody()!!.toString())
@@ -44,11 +43,11 @@ class MovieRepository(private val db: MovieDatabase) {
         val response = RetrofitInstance.api.getLatestMoviesAsync()
         return try {
             if (response.isSuccessful) {
-                val result = MovieApplicationClass.getInstance().getResponseHandler()
+                 MovieApplicationClass.getInstance().getResponseHandler()
                     .handleSuccess(response.body()!!.results.asDataBaseModel(latestMovies = true),
                         response.code())
-                handleResult(result)
-                return result
+
+
             } else {
                 MovieApplicationClass.getInstance().getResponseHandler()
                     .handleException(response.errorBody().toString())
@@ -60,37 +59,9 @@ class MovieRepository(private val db: MovieDatabase) {
 
     }
 
-    private fun handleResult(result: Resource<List<ResultDatabaseModel>>) {
-
-        CoroutineScope(Dispatchers.Default).launch {
-            when (result.status) {
-                Status.ERROR -> {
-                    withContext(Dispatchers.IO) {
-                        Log.e("NETWORK ERROR", result.message.toString())
-                    }
-
-                }
-                Status.SUCCESS -> {
-                    result.data?.forEach {
-                        addMoviesToDb(it)
-                    }
-
-                }
-                Status.LOADING -> {
-
-                    Log.e("NETWORK LOADING", result.message.toString())
-                }
-                else -> {
-                    Log.e("NETWORK ERROR", result.message.toString())
-                }
-            }
-        }
 
 
-    }
-
-
-    private suspend fun addMoviesToDb(movie: ResultDatabaseModel) = db.getMovieDAO().upsert(movie)
+    suspend fun addMoviesToDb(movie: ResultDatabaseModel) = db.getMovieDAO().upsert(movie)
     fun getPopularMovies() = db.getMovieDAO().getAllPopularMovies()
     fun getSavedMovies() = db.getSavedMoviesDao().getAllSavedMovie()
     suspend fun deleteMovie(movie: SavedResultDatabaseModel) =

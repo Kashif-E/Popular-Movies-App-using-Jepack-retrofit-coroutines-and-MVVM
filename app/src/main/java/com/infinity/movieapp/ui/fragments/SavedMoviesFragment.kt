@@ -14,6 +14,9 @@ import com.infinity.movieapp.adapter.MoviesAdapter
 import com.infinity.movieapp.databinding.FragmentSavedMoviesBinding
 import com.infinity.movieapp.models.domainmodel.asDataBaseModel
 import com.infinity.movieapp.ui.MovieViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.withContext
 
 
 class SavedMoviesFragment : Fragment(R.layout.fragment_saved_movies) {
@@ -46,8 +49,11 @@ class SavedMoviesFragment : Fragment(R.layout.fragment_saved_movies) {
 
     private fun observeMutables() {
         viewModel.savedMovies.observe(viewLifecycleOwner, { movies ->
-            Log.e("data", "changed")
+
+            Log.e("movies", movies.data.toString())
+            moviesAdapter.differ.submitList(emptyList())
             moviesAdapter.differ.submitList(movies.data)
+
         })
     }
 
@@ -75,6 +81,8 @@ class SavedMoviesFragment : Fragment(R.layout.fragment_saved_movies) {
                 Snackbar.make(requireView(),"Successfully deleted ", Snackbar.LENGTH_LONG).apply {
                     setAction("Undo") {
                      viewModel.saveMovie(movie.asDataBaseModel())
+
+                        viewModel.getSavedMovies()
                     }
                 }.show()
             }
