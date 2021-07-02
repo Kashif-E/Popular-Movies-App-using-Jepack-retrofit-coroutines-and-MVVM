@@ -43,6 +43,7 @@ class MovieViewModel(app: Application, private val movieRepository: MovieReposit
 
     init {
         val isFirtTime =
+
             DataStoreManager(MovieApplicationClass.getInstance().baseContext).isFirstTimeFlow.asLiveData(
                 Dispatchers.IO).value
         when (isFirtTime) {
