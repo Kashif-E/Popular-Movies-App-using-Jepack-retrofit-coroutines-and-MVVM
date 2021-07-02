@@ -23,18 +23,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0a39aa7d-79ee-45b8-b802-a3e60e9cd752" name="Default Changelist" comment="started jetpack compose">
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/infinity/movieapp/repository/MovieRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/infinity/movieapp/repository/MovieRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/infinity/movieapp/ui/MovieViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/infinity/movieapp/ui/MovieViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/infinity/movieapp/ui/fragments/SavedMoviesFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/infinity/movieapp/ui/fragments/SavedMoviesFragment.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[8B2X12EZU]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\kashif.mehmood\.android\avd\Pixel_2_API_30.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -341,7 +337,14 @@
       <option name="project" value="LOCAL" />
       <updated>1623947552707</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="network first done">
+      <created>1624099340281</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1624099340281</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -386,6 +389,7 @@
     <MESSAGE value="offline caching with room, resource class updated for more precise errors" />
     <MESSAGE value="latest movies caching added" />
     <MESSAGE value="work manager added" />
-    <option name="LAST_COMMIT_MESSAGE" value="work manager added" />
+    <MESSAGE value="network first done" />
+    <option name="LAST_COMMIT_MESSAGE" value="network first done" />
   </component>
 </project>
