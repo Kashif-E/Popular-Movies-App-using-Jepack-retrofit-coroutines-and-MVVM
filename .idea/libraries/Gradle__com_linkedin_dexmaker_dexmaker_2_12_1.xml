@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.linkedin.dexmaker:dexmaker:2.12.1">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.linkedin.dexmaker/dexmaker/2.12.1/44cc0c1da1d5684af7a88b018e7ce4018a898c6c/dexmaker-2.12.1.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.linkedin.dexmaker/dexmaker/2.12.1/ae95731ce22f2db93cd6f80de5f09d3b9bd1cc02/dexmaker-2.12.1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.linkedin.dexmaker/dexmaker/2.12.1/411188e9d82b74778362bcedd7ec80538814d4c5/dexmaker-2.12.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

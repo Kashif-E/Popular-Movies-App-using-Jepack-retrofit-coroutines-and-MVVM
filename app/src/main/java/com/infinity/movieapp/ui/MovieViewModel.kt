@@ -55,7 +55,9 @@ class MovieViewModel(app: Application, private val movieRepository: MovieReposit
                         IsFirst.NO)
                 }
             }
-        }
+        }/* viewModelScope.launch(Dispatchers.IO) {
+            handleMoviesResponse(movieRepository.getLatestMovies(), latestMoviesMutable)
+        }*/
 
         getpopularMovies()
         getLatestMovies()
@@ -64,122 +66,17 @@ class MovieViewModel(app: Application, private val movieRepository: MovieReposit
 
     }
 
-    private fun getLatestMovies() {
-        viewModelScope.launch(Dispatchers.IO) {
-            handleMoviesResponse(movieRepository.getPopularMovies(), popularMoviesMutable)
+    private fun getLatestMovies() = viewModelScope.launch(Dispatchers.IO) {
+            handleMoviesResponse(movieRepository.getPopularMovies().value!!, popularMoviesMutable)
         }
 
-    }
 
-    private fun getpopularMovies() {
-        viewModelScope.launch(Dispatchers.IO) {
-            handleMoviesResponse(movieRepository.getLatestMovies(), latestMoviesMutable)
-        }
 
+    private fun getpopularMovies() = viewModelScope.launch(Dispatchers.IO) {
+        handleMoviesResponse(movieRepository.getLatestMovies().value!!, popularMoviesMutable)
     }
 
 
-/*    private fun getPopularMoviesList() {
-        viewModelScope.launch(Dispatchers.IO) {
-            val response = movieRepository.refreshPopularMovieList()
-            withContext(Dispatchers.Main) {
-                when (response.status) {
-                    Status.ERROR -> {
-                        withContext(Dispatchers.IO) {
-                            handleMoviesResponse(response.message,
-                                movieRepository.getPopularMovies(), popularMoviesMutable)
-                        }
-
-                    }
-
-
-                    Status.SUCCESS -> {
-                        response.data?.forEach {
-                            movieRepository.addMoviesToDb(it)
-                        }
-                        withContext(Dispatchers.IO) {
-                            handleMoviesResponse(response.message,
-                                movieRepository.getPopularMovies(), popularMoviesMutable)
-                        }
-                    }
-                    Status.LOADING -> {
-
-                    }
-
-                    else -> {
-
-                        withContext(Dispatchers.IO) {
-                            handleMoviesResponse(response.message,
-                                movieRepository.getPopularMovies(), popularMoviesMutable)
-                        }
-                    }
-                }
-            }
-        }
-
-    }*/
-/*
-    private fun getLatestMoviesList() {
-        viewModelScope.launch(Dispatchers.IO) {
-            val response = movieRepository.refreshlatestMovieList()
-            withContext(Dispatchers.Main) {
-                when (response.status) {
-                    Status.ERROR -> {
-                        withContext(Dispatchers.IO) {
-
-                            handleMoviesResponse(response.message,
-                                movieRepository.getLatestMovies(), latestMoviesMutable)
-                        }
-
-                    }
-
-
-                    Status.SUCCESS -> {
-                        response.data?.forEach {
-                            movieRepository.addMoviesToDb(it)
-                        }
-                        withContext(Dispatchers.IO) {
-
-                            handleMoviesResponse(response.message,
-                                movieRepository.getLatestMovies(), latestMoviesMutable)
-                        }
-
-                    }
-                    Status.LOADING -> {
-
-                    }
-
-                    else -> {
-
-                        withContext(Dispatchers.IO) {
-
-                            handleMoviesResponse(response.message,
-                                movieRepository.getLatestMovies(), latestMoviesMutable)
-                        }
-
-                    }
-                }
-            }
-        }
-
-    }
-*/
-
-
-/*    private fun getLatestMovies() = viewModelScope.launch {
-
-
-            latestMoviesMutable.postValue(Resource.Loading())
-            if (hasInternetConnection()) {
-                val response = movieRepository.getLatestMovies()
-                latestMoviesMutable.postValue(handleMoviesResponse(response))
-            } else {
-                latestMoviesMutable.postValue(Resource.Error("No Internet Connection"))
-            }
-
-
-
-    }*/
 
 
     private fun handleMoviesResponse(

@@ -24,11 +24,11 @@ class MovieRepository(private val db: MovieDatabase) {
             val response = RetrofitInstance.api.getPopularMoviesAsync()
 
             if (response.isSuccessful) {
-              val result=  MovieApplicationClass.getInstance().getResponseHandler()
+                val result = MovieApplicationClass.getInstance().getResponseHandler()
                     .handleSuccess(response.body()!!.results.asDataBaseModel(popularMovies = true),
                         response.code())
                 handleResult(result)
-               return result
+                return result
             } else {
                 MovieApplicationClass.getInstance().getResponseHandler()
                     .handleException(response.errorBody()!!.toString())
@@ -40,7 +40,7 @@ class MovieRepository(private val db: MovieDatabase) {
 
     }
 
-    suspend fun refreshLatestMovieList(): Resource<List<ResultDatabaseModel>>  {
+    suspend fun refreshLatestMovieList(): Resource<List<ResultDatabaseModel>> {
         val response = RetrofitInstance.api.getLatestMoviesAsync()
         return try {
             if (response.isSuccessful) {
@@ -71,9 +71,9 @@ class MovieRepository(private val db: MovieDatabase) {
 
                 }
                 Status.SUCCESS -> {
-                    result.data?.forEach {
-                        addMoviesToDb(it)
-                    }
+
+                    addMoviesToDb(result.data!!)
+
 
                 }
                 Status.LOADING -> {
@@ -90,7 +90,9 @@ class MovieRepository(private val db: MovieDatabase) {
     }
 
 
-    private suspend fun addMoviesToDb(movie: ResultDatabaseModel) = db.getMovieDAO().upsert(movie)
+    private suspend fun addMoviesToDb(movie: List<ResultDatabaseModel>) =
+        db.getMovieDAO().upsert(movie)
+
     fun getPopularMovies() = db.getMovieDAO().getAllPopularMovies()
     fun getSavedMovies() = db.getSavedMoviesDao().getAllSavedMovie()
     suspend fun deleteMovie(movie: SavedResultDatabaseModel) =

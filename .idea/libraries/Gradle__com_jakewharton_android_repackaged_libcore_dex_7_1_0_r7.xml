@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.jakewharton.android.repackaged:libcore-dex:7.1.0_r7">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jakewharton.android.repackaged/libcore-dex/7.1.0_r7/dc99188de18096cb28007e0b83c3a0630eb6bc1/libcore-dex-7.1.0_r7.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jakewharton.android.repackaged/libcore-dex/7.1.0_r7/c1b5d3d7a0dbc1506aca55019af7fb193916f463/libcore-dex-7.1.0_r7-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jakewharton.android.repackaged/libcore-dex/7.1.0_r7/a6a6a0b99b56a57884a8a46f165ff1ae39ea4d3/libcore-dex-7.1.0_r7-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

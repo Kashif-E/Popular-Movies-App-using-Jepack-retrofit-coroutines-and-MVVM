@@ -4,17 +4,16 @@ import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.infinity.movieapp.models.databasemodels.ResultDatabaseModel
 import com.infinity.movieapp.models.databasemodels.SavedResultDatabaseModel
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface MoviesDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun upsert(movie : ResultDatabaseModel): Long
+    suspend fun upsert( movie :List<ResultDatabaseModel>): List<Long>
 
     @Query("SELECT * FROM movies WHERE popular")
-    fun getAllPopularMovies():List<ResultDatabaseModel>
+    fun getAllPopularMovies():LiveData<List<ResultDatabaseModel>>
     @Query("SELECT * FROM movies WHERE latest")
-    fun getAlllatestMovies():List<ResultDatabaseModel>
+    fun getAlllatestMovies():LiveData<List<ResultDatabaseModel>>
 
 
     @Delete
