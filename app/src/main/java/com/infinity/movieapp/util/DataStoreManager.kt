@@ -1,11 +1,12 @@
 package com.infinity.movieapp.util
 
 import android.content.Context
-
-import androidx.datastore.preferences.preferencesKey
-import androidx.datastore.preferences.createDataStore
-import androidx.datastore.preferences.edit
-import androidx.datastore.preferences.emptyPreferences
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.booleanPreferencesKey
+import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.emptyPreferences
+import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
@@ -18,11 +19,12 @@ enum class UiMode {
 enum class IsFirst{
     FIRST, NO
 }
-class DataStoreManager (context : Context){
 
-    private val dataStore = context.createDataStore("settings")
+private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
-    val uiModeFlow: Flow<UiMode> = dataStore.data
+class DataStoreManager (val context : Context){
+
+    val uiModeFlow: Flow<UiMode> = context.dataStore.data
         .catch {
             if (it is IOException) {
                 it.printStackTrace()
@@ -38,7 +40,7 @@ class DataStoreManager (context : Context){
                 false -> UiMode.LIGHT
             }
         }
-    val isFirstTimeFlow: Flow<IsFirst> = dataStore.data
+    val isFirstTimeFlow: Flow<IsFirst> = context.dataStore.data
         .catch {
             if (it is IOException) {
                 it.printStackTrace()
@@ -56,7 +58,7 @@ class DataStoreManager (context : Context){
         }
 
     suspend fun setFirstTime(isFirst: IsFirst){
-        dataStore.edit { preferences->
+        context.dataStore.edit { preferences->
             preferences[IS_FIRST_TIME] = when(isFirst){
                 IsFirst.FIRST -> true
                 IsFirst.NO -> false
@@ -65,7 +67,7 @@ class DataStoreManager (context : Context){
         }
     }
     suspend fun setUiMode(uiMode: UiMode) {
-        dataStore.edit { preferences ->
+        context.dataStore.edit { preferences ->
             preferences[IS_DARK_MODE] = when (uiMode) {
                 UiMode.LIGHT -> false
                 UiMode.DARK -> true
@@ -74,7 +76,7 @@ class DataStoreManager (context : Context){
     }
 
     companion object {
-        val IS_DARK_MODE = preferencesKey<Boolean>("dark_mode")
-        val IS_FIRST_TIME = preferencesKey<Boolean>("first_time")
+        val IS_DARK_MODE = booleanPreferencesKey("dark_mode")
+        val IS_FIRST_TIME = booleanPreferencesKey("first_time")
     }
 }

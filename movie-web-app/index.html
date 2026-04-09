@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeoMovies - Premium Movie Streaming</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div id="app">
+        <header class="glass">
+            <div class="logo">
+                <span class="neon-text">Neo</span>Movies
+            </div>
+            <div class="search-bar glass-input">
+                <input type="text" id="searchInput" placeholder="Search movies...">
+                <button id="searchBtn">🔍</button>
+            </div>
+            <div class="user-profile">
+                <div class="avatar glass"></div>
+            </div>
+        </header>
+
+        <main>
+            <section id="hero" class="hero">
+                <div class="hero-content">
+                    <h1 class="neon-glow">The Neon Horizon</h1>
+                    <p>Experience cinema in a whole new dimension.</p>
+                    <div class="hero-actions">
+                        <button class="btn btn-primary glass">Watch Now</button>
+                        <button class="btn btn-secondary glass">View Details</button>
+                    </div>
+                </div>
+                <div class="hero-overlay"></div>
+            </section>
+
+            <section class="movie-section" id="searchResultsSection" style="display: none;">
+                <div class="section-header">
+                    <h2>Search Results</h2>
+                    <a href="#" class="see-all" id="clearSearchBtn">Clear Search</a>
+                </div>
+                <div class="movie-grid" id="searchResults">
+                    <!-- Search results will be loaded here -->
+                </div>
+            </section>
+
+            <section class="movie-section" id="upcomingSection">
+                <div class="section-header">
+                    <h2>Upcoming Movies</h2>
+                    <a href="#" class="see-all">See all</a>
+                </div>
+                <div class="movie-grid" id="upcomingMovies">
+                    <!-- Movies will be loaded here -->
+                </div>
+            </section>
+
+            <section class="movie-section">
+                <div class="section-header">
+                    <h2>Popular Movies</h2>
+                    <a href="#" class="see-all">See all</a>
+                </div>
+                <div class="movie-grid" id="popularMovies">
+                    <!-- Movies will be loaded here -->
+                </div>
+            </section>
+
+            <section class="movie-section">
+                <div class="section-header">
+                    <h2>Top Rated</h2>
+                    <a href="#" class="see-all">See all</a>
+                </div>
+                <div class="movie-grid" id="topRatedMovies">
+                    <!-- Movies will be loaded here -->
+                </div>
+            </section>
+        </main>
+
+        <div id="movieModal" class="modal glass-blur">
+            <div class="modal-content glass">
+                <span class="close-btn">&times;</span>
+                <div id="modalDetails"></div>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="./main.js"></script>
+</body>
+</html>

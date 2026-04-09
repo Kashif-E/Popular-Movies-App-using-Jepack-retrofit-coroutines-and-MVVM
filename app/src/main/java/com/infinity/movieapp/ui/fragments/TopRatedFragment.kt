@@ -53,6 +53,9 @@ class TopRatedFragment : Fragment(R.layout.fragment_toprated_movies) {
                        context?.toast(message.toString())
                     }
                 }
+                else -> {
+                    binding.progressBar.hide()
+                }
             }
 
 

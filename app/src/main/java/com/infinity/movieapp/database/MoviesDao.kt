@@ -8,7 +8,7 @@ import com.infinity.movieapp.models.databasemodels.SavedResultDatabaseModel
 @Dao
 interface MoviesDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun upsert( movie :List<ResultDatabaseModel>): List<Long>
+    suspend fun upsert( movie :List<ResultDatabaseModel>)
 
     @Query("SELECT * FROM movies WHERE popular")
     fun getAllPopularMovies():LiveData<List<ResultDatabaseModel>>
@@ -24,11 +24,11 @@ interface MoviesDao {
 @Dao
 interface SavedMoviesDao{
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun upsert(movie : SavedResultDatabaseModel): Long
+    suspend fun upsert(movie : SavedResultDatabaseModel)
 
 
     @Query("SELECT * FROM saved_movies")
-    fun getAllSavedMovie(): List<SavedResultDatabaseModel>
+    suspend fun getAllSavedMovie(): List<SavedResultDatabaseModel>
 
     @Delete
     suspend fun deleteMovie(movie: SavedResultDatabaseModel)

@@ -94,7 +94,7 @@ class MovieRepository(private val db: MovieDatabase) {
         db.getMovieDAO().upsert(movie)
 
     fun getPopularMovies() = db.getMovieDAO().getAllPopularMovies()
-    fun getSavedMovies() = db.getSavedMoviesDao().getAllSavedMovie()
+    suspend fun getSavedMovies() = db.getSavedMoviesDao().getAllSavedMovie()
     suspend fun deleteMovie(movie: SavedResultDatabaseModel) =
         db.getSavedMoviesDao().deleteMovie(movie)
 

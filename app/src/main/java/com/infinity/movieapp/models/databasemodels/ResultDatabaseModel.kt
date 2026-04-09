@@ -3,11 +3,8 @@ package com.infinity.movieapp.models.databasemodels
 import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import androidx.versionedparcelable.VersionedParcelize
 import com.infinity.movieapp.models.domainmodel.Result
-import com.infinity.movieapp.models.netwrokmodels.ResultResponse
-import kotlinx.android.parcel.Parcelize
-import java.io.Serializable
+import kotlinx.parcelize.Parcelize
 
 @Entity(
     tableName ="movies"

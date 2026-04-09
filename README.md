@@ -39,6 +39,20 @@ ScreenShots:
 ![Screenshot_20210618-011213](https://user-images.githubusercontent.com/61690178/122466506-d6dfb900-cfd2-11eb-9428-845174d667d4.png)
 ![Screenshot_20210618-011237](https://user-images.githubusercontent.com/61690178/122466515-da734000-cfd2-11eb-80a9-5d0e6aa6c883.png)
 
+## 🌐 NeoMovies Web Application
+
+This repository now also includes a modern, premium web application built alongside the Android version. Located in the `movie-web-app` directory, this app features:
+
+- **Premium UI**: Glassmorphism design, neon glows, and micro-animations for a cinematic feel.
+- **Tech Stack**: Built with vanilla JavaScript, HTML, and CSS securely served via an Express 5 (Node.js) backend.
+- **TMDB Integration**: Seamlessly fetches 'Popular', 'Top Rated', and 'Upcoming' movies using the secure TMDB Access Token (`Authorization: Bearer`).
+- **Google Cloud Run**: Fully containerized with Docker and live-deployed to GCP Cloud Run.
+
+### Running the Web App Locally
+1. Navigate to the `movie-web-app` directory.
+2. Create a `.env` file and add your `TMDB_ACCESS_TOKEN=your_token_here`.
+3. Run `npm install` followed by `npm run dev` (for Vite preview) or `npm start` (for production server).
+
 
 
 

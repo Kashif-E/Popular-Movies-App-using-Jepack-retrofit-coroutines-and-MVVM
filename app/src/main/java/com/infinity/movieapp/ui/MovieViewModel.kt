@@ -55,6 +55,7 @@ class MovieViewModel(app: Application, private val movieRepository: MovieReposit
                         IsFirst.NO)
                 }
             }
+            else -> {}
         }/* viewModelScope.launch(Dispatchers.IO) {
             handleMoviesResponse(movieRepository.getLatestMovies(), latestMoviesMutable)
         }*/
@@ -66,14 +67,14 @@ class MovieViewModel(app: Application, private val movieRepository: MovieReposit
 
     }
 
-    private fun getLatestMovies() = viewModelScope.launch(Dispatchers.IO) {
-            handleMoviesResponse(movieRepository.getPopularMovies().value!!, popularMoviesMutable)
-        }
+    private fun getLatestMovies() = movieRepository.getLatestMovies().observeForever {
+        handleMoviesResponse(it, latestMoviesMutable)
+    }
 
 
 
-    private fun getpopularMovies() = viewModelScope.launch(Dispatchers.IO) {
-        handleMoviesResponse(movieRepository.getLatestMovies().value!!, popularMoviesMutable)
+    private fun getpopularMovies() = movieRepository.getPopularMovies().observeForever{
+        handleMoviesResponse(it, popularMoviesMutable)
     }
 
 
@@ -112,7 +113,7 @@ class MovieViewModel(app: Application, private val movieRepository: MovieReposit
 
     fun deleteMovie(movie: SavedResultDatabaseModel) = viewModelScope.launch(Dispatchers.IO) {
         movieRepository.deleteMovie(movie)
-        movieRepository.getSavedMovies()
+        getSavedMovies()
     }
 
 

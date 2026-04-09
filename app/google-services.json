@@ -1,0 +1,132 @@
+{
+  "project_info": {
+    "project_number": "802156269393",
+    "firebase_url": "https://lets-explore-places.firebaseio.com",
+    "project_id": "lets-explore-places",
+    "storage_bucket": "lets-explore-places.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:802156269393:android:037e68ee300e1973f48d70",
+        "android_client_info": {
+          "package_name": "com.infinity.movieapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "802156269393-n5l5lbnhu3rtamh8is7hdv3sggvejkc9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIXXXXXXXXXXX"
+        },
+        {
+          "current_key": "AIXXXXXXXXXXXX"
+        },
+        {
+          "current_key": "AIXXXXXXXXXXXX"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "802156269393-1c6imbejanej4tnb425f144tvjom9ldt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:802156269393:android:36382857005e0e0ef48d70",
+        "android_client_info": {
+          "package_name": "com.titutorial.mapdemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "802156269393-3t3jj7h5bqstms406clmlipj85pgn7uo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.titutorial.mapdemo",
+            "certificate_hash": "3befe0e79d8f16e1ece25bccff5974208de7d9d3"
+          }
+        },
+        {
+          "client_id": "802156269393-n5l5lbnhu3rtamh8is7hdv3sggvejkc9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIXXXXXXXXXXXXXXXX"
+        },
+        {
+          "current_key": "AIXXXXXXXXXXXXXXXX"
+        },
+        {
+          "current_key": "AIXXXXXXXXXXXXXXXX"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "802156269393-1c6imbejanej4tnb425f144tvjom9ldt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:802156269393:android:2e74448ac565a5e3f48d70",
+        "android_client_info": {
+          "package_name": "mobi.androapp.mpelembe.c4145"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "802156269393-4sg6b9fmu579vqdl2fdiocad7139huib.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "mobi.androapp.mpelembe.c4145",
+            "certificate_hash": "163399c10f5e8bc89525e3aaf8b9b41349d58fab"
+          }
+        },
+        {
+          "client_id": "802156269393-n5l5lbnhu3rtamh8is7hdv3sggvejkc9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIXXXXXXXXXXXXXXXXXXk"
+        },
+        {
+          "current_key": "AIXXXXXXXXXXXXXXXXXXX"
+        },
+        {
+          "current_key": "AIXXXXXXXXXXXXXXXXXXXX"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "802156269393-1c6imbejanej4tnb425f144tvjom9ldt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
